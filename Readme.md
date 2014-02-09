@@ -1,0 +1,1 @@
+This is my learning framework for starting Node. I played around with it creating the tutorial items a while back, now I'm taking the next step and manipulating those into my own project, learning as I go.
