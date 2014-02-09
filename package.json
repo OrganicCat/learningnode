@@ -1,7 +1,9 @@
 {
-	"name": "Learning Node",
+	"name": "learning-node",
 	"version": "0.0.1",
 	"dependencies": {
-		"formidable": "1.0.14"
+		"formidable": "1.0.14",
+		"express": "3.x",
+		"jade": "*"
 	}
 }
