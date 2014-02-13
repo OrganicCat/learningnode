@@ -3,7 +3,7 @@ var http = require("http"),
 	express = require("express"),
 	path = require("path"),
 	routes = require("./routes/router"),
-	test = require("./test");
+	requestHandlers = require("./requestHandlers");
 
 app = express();
 app.set('port', process.env.PORT || 3000);
@@ -17,7 +17,7 @@ app.use(app.router);
 // Sets static serving path to public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-routes.setup(app);
+routes.setup(app, requestHandlers);
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log("Express server started on port " + app.get('port'));

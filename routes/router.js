@@ -1,15 +1,9 @@
-var url = require("url");
-
-function setup(app) {
+function setup(app, requestHandlers) {
 	// Add function like old router to check for routing function, and then pass to said function
 
 	// Base test call, move into request handler as soon as possible
 	// * pass the request, get the handler from that
-	app.get('/', function(request, response){
-		var pathname = url.parse(request.url).pathname;
-		console.log("pathname " + pathname);
-	  response.render('index', { title: 'Express' });
-	});
+	app.get('/', requestHandlers.start2);
 }
 
 exports.setup = setup;

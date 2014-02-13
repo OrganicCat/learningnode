@@ -2,6 +2,10 @@ var querystring = require("querystring"),
 	fs = require("fs"),
 	formidable = require("formidable");
 
+function start2(request, response) {
+	response.render('index', { title: 'Express' });
+}
+
 function start(response, request) {
 	console.log("Request handler 'start' was called");
 
@@ -54,5 +58,6 @@ function show(response) {
 }
 
 exports.start = start;
+exports.start2 = start2;
 exports.upload = upload;
 exports.show = show;
