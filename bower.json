@@ -1,0 +1,27 @@
+{
+  "name": "learningnode",
+  "main": "server.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/OrganicCat/learningnode",
+  "authors": [
+    "OrganicCat <lee.delarm@gmail.com>"
+  ],
+  "description": "learningnode demo",
+  "keywords": [
+    "learning",
+    "nodejs",
+    "cats"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.12",
+    "bootstrap": "~3.1.0"
+  }
+}
