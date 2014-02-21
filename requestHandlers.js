@@ -6,24 +6,16 @@ function start(request, response) {
 	response.render('index', { title: 'Express' });
 }
 
+// Function handles rendering of /home and post request for the same
 function home(request, response) {
-	// Add new object property based on if we sent info
-	
-	if (request.body.mycatname) {
-		var bodyResponse = {
-			title: 'Cats in this bag',
-			mycatname: request.body.mycatname
-		};
-	} else {
-		var bodyResponse = {
-			title: 'Cats in this bag',
-			mycatname: ''
-		}
-	}
+	// More elegant solution for setting cat name based on if passed
+	var catname = request.body.mycatname ? request.body.mycatname : '';
+	console.log("catname ", catname);
+	var bodyResponse = {
+		title: 'Cats in this bag',
+		mycatname: catname
+	};
 	response.render('home', bodyResponse);
-
-	// Log what we submitted
-	console.log("request ", request.body);
 }
 
 exports.start = start;

@@ -3,7 +3,7 @@ extends layout
 block content
 	h1= title
 	p Are we doing cat pictures here? We're doing cat pictures here.
-	p My Cat Name
+	p My Cat Name #{mycatname}
 		form(name="catForm", action="/home", method="post")
 			input(type="text", name="mycatname", value="#{mycatname}")
 			input(type="submit")
