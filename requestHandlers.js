@@ -7,8 +7,23 @@ function start(request, response) {
 }
 
 function home(request, response) {
-	response.render('home', { title: 'Cats in this bag'});
+	// Add new object property based on if we sent info
+	
+	if (request.body.mycatname) {
+		var bodyResponse = {
+			title: 'Cats in this bag',
+			mycatname: request.body.mycatname
+		};
+	} else {
+		var bodyResponse = {
+			title: 'Cats in this bag',
+			mycatname: ''
+		}
+	}
+	response.render('home', bodyResponse);
 
+	// Log what we submitted
+	console.log("request ", request.body);
 }
 
 exports.start = start;

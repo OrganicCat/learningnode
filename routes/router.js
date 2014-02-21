@@ -1,11 +1,12 @@
 function setup(app, requestHandlers) {
-	// Add function like old router to check for routing function, and then pass to said function
+	// Route requests to proper requestHandler function
 
-	// Base test call, move into request handler as soon as possible
-	// * pass the request, get the handler from that
+	// Get requests
 	app.get('/', requestHandlers.start);
 	app.get('/home', requestHandlers.home);
 
+	// Post requests
+	app.post('/home', requestHandlers.home);
 }
 
 exports.setup = setup;
