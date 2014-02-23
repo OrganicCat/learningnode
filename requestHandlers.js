@@ -1,6 +1,5 @@
-var querystring = require("querystring"),
-	fs = require("fs"),
-	formidable = require("formidable");
+var redis = require("redis"),
+	client = redis.createClient();
 
 function start(request, response) {
 	response.render('index', { title: 'Express' });
@@ -8,13 +7,22 @@ function start(request, response) {
 
 // Function handles rendering of /home and post request for the same
 function home(request, response) {
+	
+	// Trying redis
+	client.on("error", function (err) {
+		console.log("Error " + err);
+	});
+
 	// More elegant solution for setting cat name based on if passed
 	var catname = request.body.mycatname ? request.body.mycatname : '';
-	console.log("catname ", catname);
+	
 	var bodyResponse = {
 		title: 'Cats in this bag',
 		mycatname: catname
 	};
+	client.set("name", catname, redis.print);
+	client.quit();
+
 	response.render('home', bodyResponse);
 }
 
