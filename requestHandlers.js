@@ -20,7 +20,19 @@ function home(request, response) {
 		title: 'Cats in this bag',
 		mycatname: catname
 	};
+
 	client.set("name", catname, redis.print);
+
+	var monsterlist = client.hmget("monsterlist", function(err) {
+		console.log("monster list not found, creating it");
+		monsterlist = mob.createMobs(client);
+		console.log("monsterlist" + monsterlist);
+	});
+
+	monsterlist = client.hmget("monsterlist", function(err) {
+		console.log("still nothing?");
+	});
+
 	client.quit();
 
 	response.render('home', bodyResponse);

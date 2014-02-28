@@ -1,11 +1,13 @@
 extends layout
 
 block content
-	h1= title
-	p Are we doing cat pictures here? We're doing cat pictures here.
-	p My Cat Name #{mycatname}
-		form(name="catForm", action="/home", method="post")
-			input(type="text", name="mycatname", value="#{mycatname}")
-			input(type="submit")
-	div
-		img#cats(src= '/images/cats.jpg')
+	div.container
+		div.jumbotron
+			h1= title
+			p Are we doing cat pictures here? We're doing cat pictures here.
+		p My Cat Name #{mycatname}
+			form(name="catForm", action="/home", method="post")
+				input(type="text", name="mycatname", value="#{mycatname}")
+				input(type="submit")
+		div
+			img#cats(src= '/images/cats.jpg')
