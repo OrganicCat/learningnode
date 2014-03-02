@@ -1,4 +1,5 @@
 var redis = require("redis"),
+	mob = require("./models/mob"),
 	client = redis.createClient();
 
 function start(request, response) {
@@ -16,26 +17,11 @@ function home(request, response) {
 	// More elegant solution for setting cat name based on if passed
 	var catname = request.body.mycatname ? request.body.mycatname : '';
 	
-	var bodyResponse = {
-		title: 'Cats in this bag',
-		mycatname: catname
-	};
-
 	client.set("name", catname, redis.print);
 
-	var monsterlist = client.hmget("monsterlist", function(err) {
-		console.log("monster list not found, creating it");
-		monsterlist = mob.createMobs(client);
-		console.log("monsterlist" + monsterlist);
-	});
+	mob.createMobs(response);
 
-	monsterlist = client.hmget("monsterlist", function(err) {
-		console.log("still nothing?");
-	});
-
-	client.quit();
-
-	response.render('home', bodyResponse);
+	// response.render('home', bodyResponse);
 }
 
 exports.start = start;
