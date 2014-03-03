@@ -1,6 +1,7 @@
-var redis = require("redis"),
-	mob = require("./models/mob"),
-	client = redis.createClient();
+var redis = require('redis'),
+	mob = require('./models/mob'),
+	client = redis.createClient(),
+	async = require('async');
 
 function start(request, response) {
 	response.render('index', { title: 'Express' });
@@ -9,19 +10,22 @@ function start(request, response) {
 // Function handles rendering of /home and post request for the same
 function home(request, response) {
 	
-	// Trying redis
-	client.on("error", function (err) {
-		console.log("Error " + err);
-	});
+	async.series([
+		function(callback) {
+			mob.createMobs(callback)
+		}
+		// Enter more functions here
+		],
+		function(err, results) {
+			console.log('test');
+			if(err) {
+				console.log('Error: ', err);
+			}	else {
+				response.render('home', results);
+			}
+		}
+	);
 
-	// More elegant solution for setting cat name based on if passed
-	var catname = request.body.mycatname ? request.body.mycatname : '';
-	
-	client.set("name", catname, redis.print);
-
-	mob.createMobs(response);
-
-	// response.render('home', bodyResponse);
 }
 
 exports.start = start;
