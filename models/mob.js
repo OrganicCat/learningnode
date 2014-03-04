@@ -31,7 +31,7 @@ function createMobs(callback) {
   getMobs(function(object) {
     console.log(object);
     object.mobs = JSON.parse(object.mobs);
-    callback(null, object.mobs);
+    callback(null, object);
   });
 
 }

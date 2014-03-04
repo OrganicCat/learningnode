@@ -5,12 +5,12 @@ block content
 		div.jumbotron
 			h1= title
 			p Are we doing cat pictures here? We're doing cat pictures here.
-		p My Cat Name #{TestList}
+		p My Cat Name #{player.name}
 			form(name="catForm", action="/home", method="post")
-				select(name="mob")
-					for currentMob in mobs
-						option(value="#{currentMob.name}") #{currentMob.name}
-				input(type="text", name="mycatname", value="#{mycatname}")
+					select(name="mob")
+						for currentMob in mobs.mobs
+							option(value="#{currentMob.name}") #{currentMob.name}
+				//input(type="text", name="mycatname", value="#{mycatname}")
 				input(type="submit")
 		div
 			img#cats(src= '/images/cats.jpg')

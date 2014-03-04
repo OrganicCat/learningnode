@@ -5,24 +5,22 @@ var redis = require("redis"),
 function createPlayer(callback) {
 
   var getPlayer = function(playerCallback) {   
-    client.hgetall("player", function(err, object) {
-      if(err) {
-        var player = {
-            name: "Captain Jack",
-            hp: 10,
-            level: 1
-        };
-        client.hset("player", JSON.stringify(player));
-        playerCallback(object);
-      } else {
-        object = JSON.parse(object);
-        playerCallback(object);
-      }
+    client.get('player', function(err, object) {
+      var player = {
+          name: "Captain Jack",
+          hp: 10,
+          level: 1
+      };
+      
+      client.set('player', JSON.stringify(player));
+      playerCallback(player);
     });    
   };
 
   getPlayer(function (object) {
-    response.render('home', object);
+    console.log('Object: ', object);
+    // object = JSON.parse(object);
+    callback(null, object);
   });
 }
 
